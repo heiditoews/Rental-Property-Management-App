@@ -1,0 +1,53 @@
+CREATE TABLE IF NOT EXISTS RegisteredRenter(
+    Username varchar(50),
+    Password varchar(50),
+    Name varchar(50),
+    Email varchar(50),
+    PRIMARY KEY (Username)
+);
+
+CREATE TABLE IF NOT EXISTS Landlord(
+    Username varchar(50),
+    Password varchar(50),
+    Name varchar(50),
+    Email varchar(50),
+    PRIMARY KEY (Username)
+);
+
+CREATE TABLE IF NOT EXISTS Manager(
+    Username varchar(50),
+    Password varchar(50),
+    PRIMARY KEY (Username)
+);
+
+CREATE TABLE IF NOT EXISTS Property(
+    Address varchar(50),
+    HouseType varchar(50),
+    NumBed int,
+    NumBath int,
+    Furnished int,
+    Quadrant varchar(50),
+    State varchar(50),
+    Fee varchar(50),
+    FeeDuration int,
+    LandlordUsername varchar(50),
+    PRIMARY KEY (Address),
+    FOREIGN KEY (LandlordUsername)
+        REFERENCES Landlord (Username)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS Message(
+    ID INT AUTO_INCREMENT,
+    Sender varchar(50),
+    Receiver varchar(50),
+    Body varchar(255),
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE IF NOT EXISTS Fee(
+    ID INT AUTO_INCREMENT,
+    Amount varchar(50),
+    Period int,
+    PRIMARY KEY (ID)
+);
